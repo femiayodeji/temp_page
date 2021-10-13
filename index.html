@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div>
+		<button onclick="sendSms()">Test</button>
+		<code id="response">{}</code>
+	</div>
+
+	<script type="text/javascript">
+		function sendSms(){
+			var result = document.getElementById("response");
+			result.innerHTML = "..."
+			var url = "https://api-dev.spaceso2o.com/api/notification/public/multiple/sms/notify";
+
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", url);
+
+			xhr.setRequestHeader("Accept", "application/json");
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.setRequestHeader("auth-key", "ae90423a-3384-431d-8f20-761954c3e3bf");
+
+			xhr.onreadystatechange = function () {
+			   if (xhr.readyState === 4) {
+					console.log(xhr.status);
+					result.innerHTML = `${xhr.status}\n ${xhr.responseText}`;
+			   }};
+
+			var data = `{"smsNotificationRequestDtos":[{"message":"Still troubleshooting from Sabi!","externalId":"1270","phoneNumber":"08087855000"}]}`;
+
+			xhr.send(data);			
+		}
+
+	</script>
+</body>
+</html>
