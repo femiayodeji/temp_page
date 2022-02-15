@@ -22,13 +22,19 @@
     <div id="user-details">
     </div>
     <div id="logs"></div>
+    <button id="fullscreen">Full</button>
+    <iframe width="200" height="100" src="https://time.e-limu.org/" id="times"></iframe>
     <iframe width="200" height="100" src="shapes_trivia.html" id="shapes"></iframe>
-    <iframe width="200" height="100" src="maths_ninja.html"></iframe>
     <iframe width="200" height="100" src="maths_ninja.html"></iframe>
     <iframe width="200" height="100" src="maths_ninja.html"></iframe>
 
     <script>
         const user = {name: "Chisom Ogbonna", userName: "Chichi", emailAddress: "chisom@e-limu.org", score: {mn:0, st:0, tm:0}}
+
+        document.getElementById("fullscreen").addEventListener("click", () => {
+            document.getElementById("times").height =  window.innerWidth;
+            document.getElementById("times").width =  window.innerHeight;
+        });
 
         window.addEventListener("message", function(e) {
             const data = e.data;
