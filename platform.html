@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent</title>
+
+    <style>
+        body{
+            background: gold;
+        }
+
+        #logs{
+            height: 200px;
+            background: #ffffff;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div id="user-details">
+    </div>
+    <div id="logs"></div>
+    <iframe width="200" height="100" src="shapes_trivia.html" id="shapes"></iframe>
+    <iframe width="200" height="100" src="maths_ninja.html"></iframe>
+    <iframe width="200" height="100" src="maths_ninja.html"></iframe>
+    <iframe width="200" height="100" src="maths_ninja.html"></iframe>
+
+    <script>
+        const user = {name: "Chisom Ogbonna", userName: "Chichi", emailAddress: "chisom@e-limu.org", score: {mn:0, st:0, tm:0}}
+
+        window.addEventListener("message", function(e) {
+            const data = e.data;
+            
+            if(["chichikey123"].includes(data.productKey)){
+                if(data.action === "CLOSE"){
+                    document.getElementById("shapes").replaceWith("");
+                } else {
+                    // const logsDOM = document.getElementById("logs")
+                    // const itemDOM = document.createElement("p");
+                    // itemDOM.innerHTML = e.data.item;
+                    // logsDOM.appendChild(itemDOM)
+                    user.score.st += parseInt(data.score)
+                    userDetails();
+                    // console.log(data)
+                }
+            }
+        })
+        
+        function userDetails(){
+            const userDetailsDOM = document.getElementById("user-details")
+
+            userDetailsDOM.innerHTML = `
+            <p>Name: ${user.name}</p>
+            <p>Username: ${user.userName}</p>
+            <div>
+                <p>Maths Ninja: ${user.score.mn}</p>
+                <p>Shapes Trivia: ${user.score.st}</p>
+            </div>
+            `
+        }
+
+        userDetails();
+
+    </script>
+
+</body>
+</html>

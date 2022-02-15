@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>child</title>
+    <style>
+        body{
+            background: red;
+        }
+        #forms{
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="forms">
+        <input placeholder="Type something.." id="item"/>
+        <button id="btn">Send to parent</button>
+    </div> -->
+
+    <div>
+        <input type="number" placeholder="Enter game score" id="score"/>
+        <button id="btn-score">Send Score</button>
+        <button id="btn-close">Close</button>
+    </div>
+
+    <script>
+        // const itemDOM = document.querySelector("#item")
+        // const btnDOM = document.querySelector("#btn")
+
+        // btnDOM.addEventListener("click", (e) => {
+        //     if(itemDOM.value){
+        //         window.parent.postMessage({productKey: "chichikey123", item: itemDOM.value}, "*");
+        //         itemDOM.value = "";
+        //     }
+        // })
+
+        const scoreDOM = document.querySelector("#score")
+        const scoreBtnDOM = document.querySelector("#btn-score")
+        scoreBtnDOM.addEventListener("click", (e) => {
+            if(scoreDOM.value){
+                window.parent.postMessage({productKey: "chichikey123", score: scoreDOM.value}, "*");
+                scoreDOM.value = "";
+            }
+        })
+
+        document.getElementById("btn-close").addEventListener("click", ()=> {
+            window.parent.postMessage({productKey: "chichikey123", action: "CLOSE"}, "*");
+        });
+
+    </script>
+</body>
+</html>
